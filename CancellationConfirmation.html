@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+   <head>
+       <title>Confirmation Page</title>
+       <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">       
+       <script>
+       <src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"> 
+       </script>
+        <script type="text/javascript"> 
+        
+//Purpose: Retrieve the HTMLString variable from the createOutput() function to display to the user.
+//Assumptions: There exists a createOutput() function in the WebApp_Form.gs be called.
+//Pre-Condtitions: The HTML page will return either confirmed or rejected without details of the reservation.
+//Post-Conditions: The details of the reservation will be displayed in the HTML page.
+//Parameters: NA                    
+            function go(){ 
+               google.script.run.withSuccessHandler(function(whatToWrite) {
+               document.getElementById("output").innerHTML = whatToWrite;
+               }).createOutput();
+            }            
+       </script>
+    </head>
+   <style>   
+    body {      
+       background-color: #fff;
+       font-family: 'Roboto', sans-serif;
+       margin: 10px;           
+    }
+   .gridLayout {
+       display: grid;
+       grid-template-columns: auto 100px 600px 100px auto;
+       grid-template-rows: 70px 50px 200px 20px 50px;
+       <!--grid-gap: 8px;-->
+    }   
+   	.box {
+        color: #000;        
+        text-align: center;
+        box-shadow: 5px 5px 10px #999;
+	}
+    .header{
+        color: #fff; 
+        background-color: rgb(65, 79, 121);
+        font-weight: bold;
+        padding: 20px 0px 0px 0px;
+        font-size: 25px;
+		grid-column: 3;
+        grid-row: 1;   
+        
+    }
+     .subHead{
+         background-color: #fff;
+         padding: 4px 0px 0px 0px;
+         font-size: 15px;
+         color: black;
+		 grid-column: 3;
+         grid-row: 2;      
+    }
+    .info{
+        padding: 0px 25px;
+        text-align: left;
+        line-height: 25px;
+        font-size: 15px;
+        background-color: rgb(243, 242, 242);
+		grid-column: 3;
+        grid-row: 3;
+        box-shadow: 5px 5px 10px #999;
+    }    
+    .nestedGrid{
+     grid-column: 3;
+     grid-row: 5;
+     display: grid;
+     grid-gap: 0px;
+     grid-template-columns: 1fr 1fr 1fr;
+     }
+     
+   .button{
+     font-size: 15px;
+     background-color:rgb(138, 149, 111);
+     color: white;
+     height: 35px; 
+     width: 200px;
+     grid-row: 5;
+     grid-column: 3;
+     justify-self: right;
+     text-align: center;
+     padding: 15px 0px 0px 0px;    
+     display: inline-block;
+     text-decoration: none;
+     transition: 0.3s;
+     cursor: pointer;
+
+   }
+   .button:hover{
+      background-color: #C5C3C2;
+      border-radius: 10px;        
+      <!--background-color: rgb(65, 79, 121); -->       
+    }
+
+   </style>
+   <body>
+      <div class="gridLayout"> 
+       
+          <div class="box header">Confirmed</div>
+          
+          <div class="box subHead">Your reservation has been confirmed.<br/>Please wait a moment to for the details of your reservation to appear.</div>
+                
+          <div class="box info" id="output"></div>
+          <script class="box info">
+             go();
+          </script>
+          
+          <div type="button" class="button" onclick="window.open('https://calendar.google.com/calendar/embed?src=m36fuue0q2o9nh5qhlk1epcurs%40group.calendar.google.com&ctz=America%2FNew_York');" 
+             >View Calendar</div>   
+      </div>
+   </body>
+
+</html>
+
+  
